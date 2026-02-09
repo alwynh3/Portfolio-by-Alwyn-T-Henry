@@ -722,5 +722,173 @@ canvas {
 .game-ui p {
     color: #ccc;
     margin-bottom: 2rem;
+
     font-family: var(--font-mono);
+}
+
+/* Print Styles */
+@media print {
+    /* General Reset */
+    * {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    body {
+        background-color: #fff !important;
+        color: #000 !important;
+        font-size: 11pt;
+    }
+    
+    body::before {
+        display: none;
+    }
+
+    /* Hide Navigation and Interactive Elements */
+    nav, 
+    .btn, 
+    .btn-link, 
+    .close-modal, 
+    .modal-actions,
+    .game-section,
+    footer,
+    .contact {
+        display: none !important;
+    }
+
+    /* Layout Adjustments */
+    .container {
+        width: 100% !important;
+        max-width: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    section {
+        padding: 1rem 0 !important;
+        page-break-inside: avoid;
+    }
+
+    h1, h2, h3, h4 {
+        page-break-after: avoid;
+        color: #000 !important;
+    }
+    
+    h1 {
+        font-size: 24pt;
+        background: none !important;
+        -webkit-text-fill-color: #000 !important;
+        margin-bottom: 0.5rem;
+    }
+
+    h2 {
+        font-size: 16pt;
+        border-left: none !important;
+        padding-left: 0 !important;
+        border-bottom: 2px solid #000;
+        padding-bottom: 0.2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .subtitle {
+        color: #444 !important;
+        font-size: 10pt;
+    }
+
+    a {
+        text-decoration: none;
+        color: #000 !important;
+    }
+
+    /* Simplify Project Cards for Print */
+    .project-card {
+        border: none !important;
+        margin-bottom: 1rem;
+        page-break-inside: avoid;
+        display: none; /* Hide main cards, show modals instead? Or show both? Let's hide cards and show modals as the "Projects" */
+    }
+    
+    /* Actually, keeping the main page summary is nice, then details follow. */
+    .project-card {
+        display: block;
+        border-bottom: 1px solid #ddd !important;
+    }
+    
+    .project-image {
+        display: none !important;
+    }
+
+    /* Make Modals Visible and Static - Appended at end */
+    .modal {
+        display: block !important;
+        position: static !important;
+        opacity: 1 !important;
+        background: none !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+        transform: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        page-break-before: always;
+    }
+
+    .modal-content {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        background: none !important;
+        width: 100% !important;
+        max-width: none !important;
+        box-shadow: none !important;
+        transform: none !important;
+    }
+
+    .modal-header {
+        border-bottom: 1px solid #000 !important;
+        margin-bottom: 1rem;
+    }
+    
+    .modal-gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        page-break-inside: avoid;
+    }
+    
+    .modal-gallery img {
+        border: 1px solid #ddd !important;
+        height: auto;
+        max-height: 150px;
+        object-fit: contain;
+    }
+    
+    /* About Section Optimization */
+    .about-content {
+        display: block;
+    }
+    
+    .about-image {
+        display: none; /* Save space */
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    
+    /* Ensure text is readable */
+    p, li {
+        color: #000 !important;
+        line-height: 1.4;
+        font-size: 10pt;
+    }
+
+    /* Links */
+    a[href^="http"]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.8rem;
+        color: #666;
+    }
 }
