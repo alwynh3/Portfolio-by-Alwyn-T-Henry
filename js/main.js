@@ -86,9 +86,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const cardImg = card.querySelector('.project-image img');
         
         const galleryImgs = [];
+        const modalSrcs = new Set();
         
-        // Add card thumbnail to the lightbox gallery queue
-        if (cardImg) {
+        if (modal) {
+            const tempModalImages = modal.querySelectorAll('.modal-gallery img');
+            tempModalImages.forEach(img => modalSrcs.add(img.src));
+        }
+        
+        // Add card thumbnail to the lightbox gallery queue if it's not already in the modal
+        if (cardImg && !modalSrcs.has(cardImg.src)) {
             galleryImgs.push({ src: cardImg.src, alt: cardImg.alt || 'Project Cover' });
         }
         
