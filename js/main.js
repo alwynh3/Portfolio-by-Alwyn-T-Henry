@@ -87,15 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const galleryImgs = [];
         
-        // Add card thumbnail to gallery
+        // Add card thumbnail to the lightbox gallery queue
         if (cardImg) {
-            galleryImgs.push({ src: cardImg.src, alt: cardImg.alt || 'Project Image' });
-            cardImg.style.cursor = 'pointer';
-            cardImg.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation(); // prevent modal from opening
-                openLightbox(modalId, 0);
-            });
+            galleryImgs.push({ src: cardImg.src, alt: cardImg.alt || 'Project Cover' });
         }
         
         // Add modal images to gallery
@@ -131,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         lightboxImg.src = imgs[currentImageIndex].src;
         lightboxImg.alt = imgs[currentImageIndex].alt;
-        lightboxCaption.textContent = `${imgs[currentImageIndex].alt} (${currentImageIndex + 1} of ${imgs.length})`;
+        lightboxCaption.textContent = `${currentImageIndex + 1} of ${imgs.length}`;
     }
 
     function nextLightboxImage() {
