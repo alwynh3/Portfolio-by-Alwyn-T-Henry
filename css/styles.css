@@ -58,6 +58,7 @@ h1 {
     margin-bottom: 1rem;
     background: linear-gradient(to right, #fff, #888);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -621,6 +622,102 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* LIGHTBOX STYLES */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox-img {
+    max-width: 90%;
+    max-height: 80vh;
+    object-fit: contain;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+    z-index: 2010;
+    line-height: 1;
+}
+
+.close-lightbox:hover {
+    color: var(--accent-color);
+}
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    border: none;
+    padding: 1rem;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 2010;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    color: var(--accent-color);
+}
+
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+.lightbox-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ccc;
+    font-size: 1rem;
+    font-family: var(--font-mono);
+    text-align: center;
+    background: rgba(0,0,0,0.5);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     h1 {
@@ -658,6 +755,19 @@ footer {
         height: 100%;
         border-radius: 0;
         padding: 1.5rem;
+    }
+
+    .lightbox-prev, .lightbox-next {
+        font-size: 2rem;
+        padding: 0.5rem;
+    }
+    
+    .lightbox-prev {
+        left: 10px;
+    }
+    
+    .lightbox-next {
+        right: 10px;
     }
 }
 /* Game Section */
